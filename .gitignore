@@ -9,7 +9,7 @@ __pycache__/
 env/
 venv/
 
-# Data files (caso você queira ignorar)
+# Data files
 data/
 *.csv
 *.json
