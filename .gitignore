@@ -1,21 +1,32 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
 
-# Environments
-.env
-.venv
-env/
+# Virtual environment
 venv/
+.env
+.envrc
 
-# Data files
-data/
-*.csv
-*.json
+# PyCharm
+.idea/
 
-# Logs
+# Docker
 *.log
+*.pid
+*.bak
+*.swp
+docker-compose.override.yml
 
-# VSCode
-.vscode/
+# Airflow
+logs/
+airflow.db
+airflow.cfg
+unittests.cfg
+.dags/
+.plugins/
+
+# Arquivos sensíveis
+*.key
+*.pem
+*.crt
