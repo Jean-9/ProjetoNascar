@@ -1,0 +1,17 @@
+services:
+  dashboard:
+    build: .
+    container_name: nascar_dashboard
+    ports:
+      - "8051:8050"
+    restart: always
+    environment:
+      - TZ=America/Sao_Paulo
+    networks:
+      - nginx_network
+    volumes:
+      - .:/app
+
+networks:
+  nginx_network:
+    external: true
