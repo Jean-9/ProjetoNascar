@@ -1,0 +1,146 @@
+/*
+====================================================
+ custom_table_final.css
+
+ Estilização personalizada para a tabela de classificação
+ no dashboard NASCAR com efeito "glassmorphism".
+
+ Este arquivo redefine completamente o visual da
+ dash_table.DataTable, com foco em:
+ - Fundo transparente com efeito vidro (glass)
+ - Cores claras com destaque nos status dos pilotos
+ - Bordas arredondadas para estética moderna
+ - Hover e seleção suave
+ - Compatibilidade com temas escuros
+
+ Utilizado em conjunto com Dash + Bootstrap Components.
+====================================================
+*/
+
+/* === 1. Células de dados === */
+.dash-spreadsheet-container td {
+    background-color: transparent !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* === 2. Cabeçalho da tabela  === */
+.dash-spreadsheet-container th {
+    background-color: rgba(255, 255, 255, 0.05) !important;  /* cor clara sutil */
+    color: white !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Arredondamento do cabeçalho */
+.dash-spreadsheet-container tr:first-child th:first-child {
+    border-top-left-radius: 12px !important;
+}
+
+.dash-spreadsheet-container tr:first-child th:last-child {
+    border-top-right-radius: 12px !important;
+}
+
+/* === 3. Container da tabela: sem borda, sem sombra === */
+.dash-table-container .dash-spreadsheet-container {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* === 4. Realce suave ao passar o mouse e seleção === */
+.dash-spreadsheet-container tr:hover td,
+.dash-spreadsheet-container td:hover,
+.dash-spreadsheet-container td:focus,
+.dash-spreadsheet-container td.cell--focused,
+.dash-spreadsheet-container td.cell--selected {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* === 5. Remove fundo branco inline (último recurso) === */
+.dash-spreadsheet-container td[style*="background-color: white"] {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* === 6. Desativa o hover padrão do Dash herdado do tema === */
+.dash-table-container .dash-spreadsheet-container .dash-spreadsheet-inner table {
+    --hover: transparent !important;
+}
+
+/* === 7. Bordas arredondadas completas === */
+/* Arredonda os cantos superiores do cabeçalho */
+.dash-spreadsheet-container th:first-child {
+    border-top-left-radius: 12px !important;
+}
+.dash-spreadsheet-container th:last-child {
+    border-top-right-radius: 12px !important;
+}
+
+/* Arredonda os cantos inferiores da última linha */
+.dash-spreadsheet-container tr:last-child td:first-child {
+    border-bottom-left-radius: 12px !important;
+}
+.dash-spreadsheet-container tr:last-child td:last-child {
+    border-bottom-right-radius: 12px !important;
+}
+
+/* === 8. Hover com cantos arredondados === */
+/* Arredonda os cantos da primeira e última célula da linha ao passar o mouse */
+.dash-spreadsheet-container tr:hover td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.dash-spreadsheet-container tr:hover td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* === 9. Seleção com cantos arredondados === */
+/* Arredonda as células em foco/selecionadas (ex: após clique) */
+.dash-spreadsheet-container tr:focus td:first-child,
+.dash-spreadsheet-container tr.cell--focused td:first-child,
+.dash-spreadsheet-container tr td.cell--selected:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.dash-spreadsheet-container tr:focus td:last-child,
+.dash-spreadsheet-container tr.cell--focused td:last-child,
+.dash-spreadsheet-container tr td.cell--selected:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* === 10. Linha divisória suave === */
+.dash-spreadsheet-container td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;  /* pode ajustar a opacidade */
+}
+
+/* === 11. Transparência persistente === */
+/* Garante que o fundo continue transparente */
+.dash-spreadsheet-container tr,
+.dash-spreadsheet-container td {
+    background-color: transparent !important;
+}
+
+/* === 12. Hover com linha visível === */
+/* Evita que o hover sobrescreva a borda */
+.dash-spreadsheet-container tr:hover td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* === 13. Cartões estilo vidro === */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,44 @@
+/*
+====================================================
+ style_final.css
+
+ Estilos globais do dashboard NASCAR.
+ Aplica imagem de fundo escura com efeito glassmorphism
+ e define aparência geral do layout.
+
+ Inclui:
+ - Fundo com imagem de carros da NASCAR
+ - Sobreposição escura para contraste com texto
+ - Classe reutilizável `.glass-box` com efeito vidro
+
+ Utilizado como folha de estilo principal no Dash.
+====================================================
+*/
+
+/* === 1. Fundo com imagem e sobreposição escura === */
+body {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),  /* overlay escuro */
+    url("/assets/Carros-Nascar.jpg");                           /* imagem de fundo */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* === 2. Classe reutilizável para cartões com efeito vidro === */
+.glass-box {
+  background: rgba(255, 255, 255, 0.05);                  /* fundo semi-transparente */
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);                     /* compatibilidade Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);              /* borda sutil */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);                 /* leve sombra */
+}

@@ -1,17 +1,18 @@
 services:
   dashboard:
     build: .
+    image: nascar-dashboard:latest  # Nome da imagem
     container_name: nascar_dashboard
     ports:
-      - "8051:8050"
+      - "8051:8050"  # Externo:Interno (acesso ao Dash pela porta 8051)
     restart: always
     environment:
-      - TZ=America/Sao_Paulo
-    networks:
-      - nginx_network
+      TZ: America/Sao_Paulo
     volumes:
-      - .:/app
+      - .:/app  # Monta o código local dentro do container (útil para desenvolvimento)
+    networks:
+      - nginx_network  # Conectado à rede reversa do Nginx
 
 networks:
   nginx_network:
-    external: true
+    external: true  # Rede já criada pelo Nginx reverso

@@ -1,6 +1,10 @@
+# Imagem base minimalista com Python 3.12
 FROM python:3.12-slim
 
-# Instala dependências de sistema e timezone
+# Define o fuso horário
+ENV TZ=America/Sao_Paulo
+
+# Instala dependências do sistema e configura timezone
 RUN apt-get update && apt-get install -y \
     iputils-ping \
     net-tools \
@@ -8,23 +12,25 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     tzdata \
-    && apt-get clean
+ && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime \
+ && echo $TZ > /etc/timezone \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# Define o timezone do container (São Paulo)
-ENV TZ=America/Sao_Paulo
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-# Cria diretório da aplicação
+# Define diretório de trabalho
 WORKDIR /app
 
-# Copia arquivos do projeto
+# Copia apenas o requirements primeiro (melhora cache de build)
+COPY requirements.txt .
+
+# Instala as dependências Python
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+# Copia o restante do projeto
 COPY . .
 
-# Instala dependências Python
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-# Expõe a porta do Dash
+# Expõe a porta usada pelo Dash
 EXPOSE 8050
 
-# Comando para iniciar o dashboard
+# Comando padrão para iniciar o app
 CMD ["python", "app.py"]
