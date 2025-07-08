@@ -40,30 +40,32 @@ Este projeto simula uma infraestrutura real de dados utilizada em empresas, apli
 
 ## Estrutura de Pastas
 
+```
 projeto_nascar/
-├── dag_etl/ # Pipeline ETL com Airflow
-│ ├── dag_nascar.py
-│ ├── main.py
-│ ├── request_nascar.py
-│ ├── transform_data.py
-│ └── calendario_NASCAR_2025.csv
+├── dag_etl/                  # Pipeline ETL com Airflow
+│   ├── dag_nascar.py
+│   ├── main.py
+│   ├── request_nascar.py
+│   ├── transform_data.py
+│   └── calendario_NASCAR_2025.csv
 │
-├── dashboard_nascar/ # Dashboard web com Dash
-│ ├── app.py
-│ ├── layout.py
-│ ├── querys.py
-│ ├── imagens_circuitos.py
-│ ├── utils/
-│ │ ├── db_connection.py
-│ │ └── .env
-│ ├── assets/ # Estilos CSS e imagens
-│ │ ├── *.css
-│ │ └── *.jpg/png
+├── dashboard_nascar/         # Dashboard web com Dash
+│   ├── app.py
+│   ├── layout.py
+│   ├── querys.py
+│   ├── imagens_circuitos.py
+│   ├── utils/
+│   │   ├── db_connection.py
+│   │   └── .env
+│   ├── assets/               # Estilos CSS e imagens
+│       ├── *.css
+│       └── *.jpg/png
 │
 ├── docker-compose.yml
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
+```
 
 
 ##  Como Executar Localmente
