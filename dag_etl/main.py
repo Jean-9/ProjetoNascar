@@ -28,6 +28,7 @@ import pandas as pd
 import psycopg2
 import requests
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 # from mensagem_telegram import enviar_telegram
 from transform_data import (
@@ -89,10 +90,17 @@ def coletar_dados():
 def corrida_ativa_hoje():
     try:
         calendario = pd.read_csv("Calendario_NASCAR_2025.csv")
-        hoje = datetime.now().date()
 
-        # Converte a coluna "data" para datetime.date
-        calendario["data"] = pd.to_datetime(calendario["data"]).dt.date
+        # Converte para datetime com timezone de origem (EUA)
+        calendario["data"] = pd.to_datetime(calendario["data"]).dt.tz_localize(ZoneInfo("America/New_York"))
+
+        # Converte para fuso horário do Brasil
+        calendario["data"] = calendario["data"].dt.tz_convert(ZoneInfo("America/Sao_Paulo"))
+
+        # Extrai apenas a data (sem hora) para comparar com hoje em BR
+        calendario["data"] = calendario["data"].dt.date
+
+        hoje = datetime.now(ZoneInfo("America/Sao_Paulo")).date()
 
         if hoje in calendario["data"].values:
             print("[INFO][main.py] Corrida agendada para hoje.")
