@@ -1,8 +1,8 @@
 import requests
 
 def enviar_telegram(mensagem):
-    token = "7765478794:AAHAtyPoeY5fa6QIR3cv1zHfz55En4B9PTI"
-    chat_id = "5657759813"
+    token = "token"
+    chat_id = "chat_id"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     payload = {
